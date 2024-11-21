@@ -64,4 +64,4 @@ This approach ensures efficient detection of cycles and provides clear insight i
   3 4 2
   4 1 2
 
-Warning: a negative cycle detected in the genes: 1 2 3 4
+Warning: a negative cycle detected in the genes: 1 2 3 4 1
