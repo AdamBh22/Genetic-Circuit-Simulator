@@ -9,13 +9,13 @@ TEST(CycleDetectorTest, DetectCycle) {
     circuit.addGene(3);
     circuit.addEdge(1, 2, 1);
     circuit.addEdge(2, 3, 2);
-    circuit.addEdge(3, 1, 1);
+    circuit.addEdge(3, 1, 2);
 
     CycleDetector detector;
     detector.DetectCycle(circuit);
 
     const std::vector<Gene*>& cycle = detector.getCycle();
-    EXPECT_GT(cycle.size(), 0); // Expecting a non-empty cycle
+    EXPECT_EQ(cycle.size(), 4); 
 }
 
 TEST(CycleDetectorTest, NoCycleDetected) {
@@ -28,5 +28,5 @@ TEST(CycleDetectorTest, NoCycleDetected) {
     detector.DetectCycle(circuit);
 
     const std::vector<Gene*>& cycle = detector.getCycle();
-    EXPECT_EQ(cycle.size(), 0); // No cycle expected
+    EXPECT_EQ(cycle.size(), 0); 
 }

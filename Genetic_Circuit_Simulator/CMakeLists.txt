@@ -8,34 +8,25 @@ include_directories(include)
 
 # Add source files
 set(SOURCES
-        src/main.cpp
-        src/Gene.cpp
-        src/GeneticCircuit.cpp
-        src/CycleDetector.cpp
+    src/Gene.cpp
+    src/GeneticCircuit.cpp
+    src/CycleDetector.cpp
 )
 
 # Create the main executable
-add_executable(GeneticCircuit ${SOURCES})
+add_executable(GeneticCircuit src/main.cpp ${SOURCES})
 
 # Enable testing
 enable_testing()
 
-# Add test files
+# Add test executable
 add_executable(runTests
-        tests/test_CycleDetector.cpp
-        tests/test_Gene.cpp
-        tests/test_GeneticCircuit.cpp
-        src/main.cpp
-        src/Gene.cpp
-        src/GeneticCircuit.cpp
-        src/CycleDetector.cpp
+    tests/test_CycleDetector.cpp
+    tests/test_Gene.cpp
+    tests/test_GeneticCircuit.cpp
+    ${SOURCES} # Add source files except `main.cpp`
 )
 
-# Find Google Test package
-find_package(GTest REQUIRED)
-
 # Link GoogleTest to the test executable
+find_package(GTest REQUIRED)
 target_link_libraries(runTests GTest::GTest GTest::Main)
-
-# Register the tests with CTest
-add_test(NAME GeneticCircuitTests COMMAND runTests)
