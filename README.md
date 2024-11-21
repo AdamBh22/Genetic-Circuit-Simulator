@@ -6,9 +6,22 @@ The Genetic Circuit Simulator is a tool designed to simulate and detect cycles i
 
 ## Features
 
-- **Gene Representation**: Genes are modeled as nodes with unique IDs and can have directed edges representing interactions.
-- **Cycle Detection**: The simulator can detect negative cycles in the gene network using DFS.
-- **Adjacency List**: Each gene has an adjacency list representing other genes it interacts with and the type of interaction.
+- **Gene Representation**: Genes are modeled as nodes in a directed graph, where each gene has a unique ID. Interactions between genes are represented as directed edges with associated types.
+
+- **Graph Theory Basis**: The simulator uses concepts from graph theory to represent genetic circuits. Nodes (genes) and directed edges (interactions) form a graph structure. The problem of detecting negative cycles in the circuit translates into finding specific substructures in the graph where the cumulative "type difference" leads to undesirable behavior.
+
+- **Cycle Detection**: The simulator employs a depth-first search (DFS)-based algorithm to traverse the graph and detect negative cycles. Negative cycles are identified by tracking the difference between two types of interactions along paths.
+
+- **Adjacency List**: Each gene maintains an adjacency list that records its outgoing edges. Each edge points to a connected gene and includes a type identifier, which the algorithm uses to compute type balances during traversal.
+
+- **Algorithm Description**: The cycle detection algorithm:
+  1. Initializes a `visited` map and tracks the parent of each node for cycle reconstruction.
+  2. Traverses the graph using DFS, maintaining counts of the two interaction types (`type1` and `type2`) along the traversal path.
+  3. Checks for back edges during DFS. If a back edge is encountered, it verifies whether the cumulative difference in interaction types (`type2 - type1`) satisfies the negative cycle condition.
+  4. If a negative cycle is detected, it reconstructs the cycle using the parent map and outputs the sequence of genes forming the cycle.
+
+This approach ensures efficient detection of cycles and provides clear insight into the graph structure and interaction patterns within genetic circuits.
+
 
 ## How to Use
 
