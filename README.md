@@ -27,7 +27,7 @@ This approach ensures efficient detection of cycles and provides clear insight i
 
 1. **Clone the Repository**:
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/AdamBh22/Genetic-Circuit-Simulator.git
     cd GeneticCircuit
     ```
 
