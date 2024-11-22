@@ -20,7 +20,6 @@ bool CycleDetector::dfs(Gene* currentGene, int number1, int number2) {
         int type = element.second;
         int numberGene1 = number1;
         int numberGene2 = number2;
-        parent[gene] = currentGene;
 
         if (type == 1)
             numberGene1++;
@@ -28,9 +27,11 @@ bool CycleDetector::dfs(Gene* currentGene, int number1, int number2) {
             numberGene2++;
 
         if (visited[gene] == 1 && numberGene2 - count2[gene] >= numberGene1 - count1[gene]) {
+            parent[gene] = currentGene;
             startingGene = gene;
             return true;
         } else if (visited[gene] == 0) {
+            parent[gene] = currentGene;
             cycleDetected |= dfs(gene, numberGene1, numberGene2);
         }
     }
